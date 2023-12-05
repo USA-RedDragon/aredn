@@ -122,6 +122,7 @@ local cfg = {
     tc_interval = "10.0",
     mid_interval = "10.0",
     hna_interval = "10.0"
+    batman_network_config = ""
 }
 -- Track the changes so we can make better decissions about what to restart/reboot
 local changes = {
@@ -348,6 +349,10 @@ else
         config = config .. "	list ports '" .. port .. "'\n"
     end
     cfg.bridge_network_config = config
+end
+
+if cm:get("aredn", "@batman[0]", "enable") == "1" then
+    cfg.batman_network_config = cfg.batman_network_config .. "config interface 'bat0'\n\toption proto 'batadv'\n\toption routing_algo 'BATMAN_V'\n\toption aggregated_ogms '1'\n\toption ap_isolation '0'\n\toption bonding '0'\n\toption fragmentation '1'\n\toption gw_mode 'off'\n\n"
 end
 
 -- generate the network configurations

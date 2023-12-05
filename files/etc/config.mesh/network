@@ -48,3 +48,6 @@ include /etc/config.mesh/xlink
 
 ### Wireguard
 <wireguard_network_config>
+
+### BATMAN
+<batman_network_config>

@@ -290,6 +290,15 @@ local settings = {
         default = "1"
     },
     {
+        category = "BATMAN Settings",
+        key = "aredn.@batman[0].enable",
+        type = "boolean",
+        desc = "Enable <b>BATMAN</b> mesh support<br><br><small>aredn.@batman[0].enable</small>",
+        default = "0",
+        needreboot = true,
+        postcallback = "changeBATMAN()"
+    },
+    {
         category = "Network Tools",
         key = "aredn.olsr.restart",
         type = "none",
@@ -629,6 +638,10 @@ function validate_rsyslog()
             newval = ""
         end
     end
+end
+
+function changeBATMAN()
+    os.execute("/usr/local/bin/node-setup -a mesh")
 end
 
 -- read_postdata
