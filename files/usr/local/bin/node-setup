@@ -119,7 +119,8 @@ local cfg = {
     wifi_network_config = "",
     olsrd_dtd_interface_mode = "ether",
     tun_network_config = "",
-    wireguard_network_config = ""
+    wireguard_network_config = "",
+    batman_network_config = ""
 }
 
 function expand_vars(lines)
@@ -304,6 +305,10 @@ if do_basic then
             config = config .. "	list ports '" .. port .. "'\n"
         end
         cfg.bridge_network_config = config
+    end
+
+    if cm:get("aredn", "@batman[0]", "enable") == "1" then
+        cfg.batman_network_config = cfg.batman_network_config .. "config interface 'bat0'\n\toption proto 'batadv'\n\toption routing_algo 'BATMAN_V'\n\toption aggregated_ogms '1'\n\toption ap_isolation '0'\n\toption bonding '0'\n\toption fragmentation '1'\n\toption gw_mode 'off'\n\n"
     end
 
     -- generate the network configurations

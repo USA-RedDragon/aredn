@@ -39,5 +39,8 @@ include /etc/config.mesh/xlink
 ### Tunnels devices
 include /etc/config.mesh/network_tun
 
+### BATMAN
+<batman_network_config>
+
 ### Wireguard
 <wireguard_network_config>
