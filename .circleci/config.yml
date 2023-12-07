@@ -92,6 +92,10 @@ jobs:
           command: make MAINTARGET=x86 SUBTARGET=64
           no_output_timeout: 2h
       - run:
+          name: Build armsr/armv8
+          command: make MAINTARGET=armsr SUBTARGET=armv8
+          no_output_timeout: 2h
+      - run:
           name: Build ramips/mt7621
           command: make MAINTARGET=ipq40xx SUBTARGET=mt7621
           no_output_timeout: 2h
@@ -145,6 +149,10 @@ jobs:
       - run:
           name: Build x64/64
           command: make MAINTARGET=x86 SUBTARGET=64
+          no_output_timeout: 2h
+      - run:
+          name: Build armsr/armv8
+          command: make MAINTARGET=armsr SUBTARGET=armv8
           no_output_timeout: 2h
       - run:
           name: Build ramips/mt7621
